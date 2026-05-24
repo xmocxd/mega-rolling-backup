@@ -2,11 +2,15 @@
 # backup files from mega
 # MEGAcmd version: 2.1.1.1: code 2010101
 
+# use
+# - creates a folder for the current version of remote path, which updates in place using mega-get
+# - creates rolling snapshots of the current version
+
 # NOTE - RUN mega-mount and look for INSHARE to get shared folders
 
 # ================== CONFIGURATION ==================
 REMOTE_PATH="//from/" # Remote path on MEGA
-BASE_LOCAL_GET_DIR="/mnt/d/mega/UOJ/current" # Folder for get image
+BASE_LOCAL_GET_DIR="/mnt/d/mega/UOJ/current" # Folder for current get image
 BASE_LOCAL_DIR="/mnt/d/mega/UOJ/snapshots" # Base folder for all snapshots
 MAX_SNAPSHOTS=5 # Keep only the last N snapshots (rotation)
 CRON_DAYS=3 # do a snapshot once every n days (n cron job runs)
@@ -38,7 +42,6 @@ if ! mega-whoami > /dev/null 2>&1; then
         	exit 1
     	fi
 fi
-
 
 echo "=== Starting MEGA pull at $(date) ==="
 echo ""
